@@ -50,16 +50,16 @@ namespace Locadora.Application.Services
             return Result.Fail("Filme não encontrado!");
         }
 
-        public ReadFilmeDto RetornaFilmePorId(int id)
+        public ReadFilmeComDiretorDto RetornaFilmePorId(int id)
         {
             Filme filme = _repository.Retorna(id);
-            if (filme != null) return _mapper.Map<ReadFilmeDto>(filme);
+            if (filme != null) return _mapper.Map<ReadFilmeComDiretorDto>(filme);
             return null;
         }
 
-        public List<ReadFilmeDto> RetornaListaDeFilmes()
+        public List<ReadFilmeComDiretorDto> RetornaListaDeFilmes()
         {
-            return _mapper.Map<List<ReadFilmeDto>>(_repository.RetornaLista());
+            return _mapper.Map<List<ReadFilmeComDiretorDto>>(_repository.RetornaLista());
         }
     }
 }

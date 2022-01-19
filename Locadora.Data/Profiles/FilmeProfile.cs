@@ -11,6 +11,9 @@ namespace Locadora.Data.Profiles
         {
             CreateMap<CreateFilmeDto, Filme>();
             CreateMap<Filme, ReadFilmeDto>().ForMember(dest => dest.Genero, opt => opt.MapFrom(src => src.Genero.Nome));
+            CreateMap<Filme, ReadFilmeComDiretorDto>()
+                .ForMember(dest => dest.Genero, opt => opt.MapFrom(src => src.Genero.Nome))
+                .ForMember(dest => dest.Diretor, opt => opt.MapFrom(src => src.Diretor.Nome));
         }
     }
 }

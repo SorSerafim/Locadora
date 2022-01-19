@@ -9,7 +9,7 @@ namespace Locadora.Domain.Interfaces.ServiceInterfaces
         void AdicionaFilme(CreateFilmeDto createDto);
         Result AtualizaFilme(int id, CreateFilmeDto createDto);
         Result DeletaFilme(int id);
-        ReadFilmeDto RetornaFilmePorId(int id);
-        List<ReadFilmeDto> RetornaListaDeFilmes();
+        ReadFilmeComDiretorDto RetornaFilmePorId(int id);
+        List<ReadFilmeComDiretorDto> RetornaListaDeFilmes();
     }
 }

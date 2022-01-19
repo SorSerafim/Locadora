@@ -10,12 +10,20 @@ namespace Locadora.Data.Repositories
         {
         }
 
-        //public override List<Filme> RetornaLista()
-        //{
-        //    return _context.Filmes
-        //        .Include(x => x.Diretor)
-        //        .ThenInclude(c => c.Nome)
-        //        .ToList();
-        //}
+        public Filme Retorna(int id)
+        {
+            return _context.Filmes
+                .Include(x => x.Diretor)
+                .Include(x => x.Genero)
+                .FirstOrDefault(x => x.Id == id);
+        }
+
+        public override List<Filme> RetornaLista()
+        {
+            return _context.Filmes
+                .Include(x => x.Diretor)
+                .Include(x => x.Genero)
+                .ToList();
+        }
     }
 }

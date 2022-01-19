@@ -7,8 +7,6 @@ namespace Locadora.Shared.ReadDto
         public string Nome { get; set; }
         public int Ano { get; set; }
         public int Duracao { get; set; }
-        [JsonIgnore]
-        public virtual ReadDiretorDto Diretor { get; set; }
         public string Genero { get; set; }
     }
 }

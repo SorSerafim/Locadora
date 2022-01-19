@@ -27,7 +27,7 @@ namespace Locadora.Controllers
         [HttpGet]
         public IActionResult RetornaLista()
         {
-            List<ReadFilmeDto> listDto = _service.RetornaListaDeFilmes();
+            List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmes();
             if (listDto != null) return Ok(listDto);
             return NoContent();
         }
@@ -35,7 +35,7 @@ namespace Locadora.Controllers
         [HttpGet("{id}")]
         public IActionResult RetornaPorId(int id)
         {
-            ReadFilmeDto readDto = _service.RetornaFilmePorId(id);
+            ReadFilmeComDiretorDto readDto = _service.RetornaFilmePorId(id);
             if (readDto != null) return Ok(readDto);
             return NoContent();
         }
