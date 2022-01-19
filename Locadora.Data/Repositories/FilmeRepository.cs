@@ -23,6 +23,7 @@ namespace Locadora.Data.Repositories
             return _context.Filmes
                 .Include(x => x.Diretor)
                 .Include(x => x.Genero)
+                .OrderBy(x => x.Nome)
                 .ToList();
         }
     }
