@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // Data
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<LocadoraContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocadoraConnection")));
 builder.Services.AddTransient<IDiretorRepository, DiretorRepository>();
 builder.Services.AddTransient<IFilmeRepository, FilmeRepository>();
