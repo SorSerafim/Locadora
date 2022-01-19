@@ -1,33 +1,17 @@
-using Locadora.Application.Services;
-using Locadora.Data;
-using Locadora.Data.Repositories;
-using Locadora.Domain.Interfaces.RepositoryInterfaces;
-using Locadora.Domain.Interfaces.ServiceInterfaces;
-using Microsoft.EntityFrameworkCore;
+using Locadora.Application.ExtensionsApplication;
+using Locadora.Data.ExtensionsData;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
-
-// Data
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddDbContext<LocadoraContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocadoraConnection")));
-builder.Services.AddTransient<IDiretorRepository, DiretorRepository>();
-builder.Services.AddTransient<IFilmeRepository, FilmeRepository>();
-builder.Services.AddTransient<IGeneroRepository, GeneroRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-
-// Application
-builder.Services.AddTransient<IDiretorService, DiretorService>();
-builder.Services.AddTransient<IFilmeService, FilmeService>();
-builder.Services.AddTransient<IGeneroService, GeneroService>();
-builder.Services.AddTransient<IUserService, UserService>();
-
+builder.Services.AddData(builder.Configuration);
+builder.Services.AddAplication();
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.BuildServiceProvider().GetService<LocadoraContext>().Database.Migrate();
 
 var app = builder.Build();
 

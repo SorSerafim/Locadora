@@ -1,14 +1,11 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Locadora.Shared.ReadDto
+﻿namespace Locadora.Shared.ReadDto
 {
-    public class ReadFilmeDto
+    public class ReadFilmeSemDiretorDto
     {
         public string Nome { get; set; }
         public int Ano { get; set; }
         public int Duracao { get; set; }
-        [JsonIgnore]
         public virtual ReadDiretorDto Diretor { get; set; }
-        public string Genero { get; set; }
+        public virtual ReadGeneroDto Genero { get; set; }
     }
 }
