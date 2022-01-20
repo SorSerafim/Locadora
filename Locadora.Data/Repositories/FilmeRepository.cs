@@ -10,7 +10,7 @@ namespace Locadora.Data.Repositories
         {
         }
 
-        public Filme Retorna(int id)
+        public override Filme Retorna(int id)
         {
             return _context.Filmes
                 .Include(x => x.Diretor)
@@ -24,6 +24,15 @@ namespace Locadora.Data.Repositories
                 .Include(x => x.Diretor)
                 .Include(x => x.Genero)
                 .OrderBy(x => x.Nome)
+                .ToList();
+        }
+
+        public List<Filme> RetornaListaPorNome(string name)
+        {
+            return _context.Filmes
+                .Include(x => x.Diretor)
+                .Include(x => x.Genero)
+                .Where(x => x.Diretor.Nome.Equals(name))
                 .ToList();
         }
     }

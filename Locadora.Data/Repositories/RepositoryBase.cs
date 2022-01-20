@@ -30,7 +30,7 @@ namespace Locadora.Data.Repositories
             _context.SaveChanges();
         }
 
-        public T Retorna(int id)
+        public virtual T Retorna(int id)
         {
             return _context.Set<T>().FirstOrDefault(x => x.Id == id);
         }

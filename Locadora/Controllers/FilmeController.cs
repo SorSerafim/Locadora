@@ -32,6 +32,14 @@ namespace Locadora.Controllers
             return NoContent();
         }
 
+        [HttpGet("nome/{nome}")]
+        public IActionResult RetornaPorNome(string nome)
+        {
+            List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmesPorNome(nome);
+            if (listDto != null) return Ok(listDto);
+            return NoContent();
+        }
+
         [HttpGet("{id}")]
         public IActionResult RetornaPorId(int id)
         {

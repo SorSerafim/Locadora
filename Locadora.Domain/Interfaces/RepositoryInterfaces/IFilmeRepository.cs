@@ -2,5 +2,6 @@
 {
     public interface IFilmeRepository : IRepository<Filme>
     {
+        List<Filme> RetornaListaPorNome(string name);
     }
 }
