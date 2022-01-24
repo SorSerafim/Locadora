@@ -1,4 +1,5 @@
-﻿using Locadora.Domain.Interfaces.ServiceInterfaces;
+﻿using Locadora.Common;
+using Locadora.Domain.Interfaces.ServiceInterfaces;
 using Locadora.Service;
 using Locadora.Shared.CreateDto;
 using Locadora.Shared.ReadDto;
@@ -23,8 +24,16 @@ namespace Locadora.Controllers
         [HttpPost("Cadastro")]
         public IActionResult Adicionar(CreateUserDto createDto)
         {
+            createDto.Password = CommonMethods.ConvertToEncrypt(createDto.Password);
             _service.AdicionaUser(createDto);
             return Ok();
+        }
+
+        [HttpPost("Autenticar")]
+        [AllowAnonymous]
+        public string GetAutenticar(AuthorizeDto readDto)
+        {
+            return _token.GenerateToken(_service.RetornaUserPorUsernameESenha(readDto.username, CommonMethods.ConvertToEncrypt(readDto.password)));
         }
 
         [HttpGet("{id}")]
@@ -41,13 +50,6 @@ namespace Locadora.Controllers
             List<ReadUserDto> listDto = _service.RetornaListaDeUsers();
             if (listDto != null) return Ok(listDto);
             return NoContent();
-        }
-
-        [HttpGet("Autenticar")]
-        [AllowAnonymous]
-        public string GetAutenticar(string username, string password)
-        {
-            return _token.GenerateToken(_service.RetornaUserPorUsernameESenha(username, password));
         }
     }
 }
