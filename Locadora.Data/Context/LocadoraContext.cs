@@ -1,6 +1,7 @@
 ﻿using Locadora.Domain;
 using Locadora.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Locadora.Data
 {
@@ -17,24 +18,7 @@ namespace Locadora.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Diretor>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.Entity<Filme>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.Entity<Genero>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.Entity<Filme>()
-                .HasOne(x => x.Diretor)
-                .WithMany(x => x.Filmes)
-                .HasForeignKey(x => x.DiretorId);
-
-            modelBuilder.Entity<Filme>()
-                .HasOne(x => x.Genero)
-                .WithMany(x => x.Filmes)
-                .HasForeignKey(x => x.GeneroId);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
