@@ -1,4 +1,5 @@
 ﻿using Locadora.Domain;
+using Locadora.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Locadora.Data
@@ -8,6 +9,7 @@ namespace Locadora.Data
         public DbSet<Diretor> Diretores { get; set; }
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Genero> Generos { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public LocadoraContext(DbContextOptions<LocadoraContext> options) : base(options)
         {

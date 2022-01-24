@@ -12,7 +12,7 @@ namespace Locadora.Data.Repositories
             _context = context;
         }
 
-        public void Adiciona(T entity)
+        public virtual void Adiciona(T entity)
         {
             _context.Set<T>().Add(entity);
             _context.SaveChanges();
