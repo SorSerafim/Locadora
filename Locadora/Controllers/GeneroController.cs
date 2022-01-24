@@ -17,14 +17,14 @@ namespace Locadora.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("Adicionar")]
         public IActionResult Adicionar(CreateGeneroDto createDto)
         {
             _service.AdicionaGenero(createDto);
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("ListaDeGêneros")]
         public IActionResult RetornaLista()
         {
             List<ReadGeneroDto> listDto = _service.RetornaListaDeGeneros();

@@ -62,9 +62,9 @@ namespace Locadora.Application.Services
             return _mapper.Map<List<ReadFilmeComDiretorDto>>(_repository.RetornaLista());
         }
 
-        public List<ReadFilmeComDiretorDto> RetornaListaDeFilmesPorNome(string name)
+        public List<ReadFilmeComDiretorDto> RetornaListaDeFilmesDeUmDiretor(string name)
         {
-            return _mapper.Map<List<ReadFilmeComDiretorDto>>(_repository.RetornaListaPorNome(name));
+            return _mapper.Map<List<ReadFilmeComDiretorDto>>(_repository.RetornaListaDeFilmesPorNomeDoDiretor(name));
         }
     }
 }

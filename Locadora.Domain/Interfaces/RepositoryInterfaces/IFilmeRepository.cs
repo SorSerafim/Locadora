@@ -2,6 +2,6 @@
 {
     public interface IFilmeRepository : IRepository<Filme>
     {
-        List<Filme> RetornaListaPorNome(string name);
+        List<Filme> RetornaListaDeFilmesPorNomeDoDiretor(string name);
     }
 }

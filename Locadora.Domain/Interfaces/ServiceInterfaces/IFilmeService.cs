@@ -11,6 +11,6 @@ namespace Locadora.Domain.Interfaces.ServiceInterfaces
         Result DeletaFilme(int id);
         ReadFilmeComDiretorDto RetornaFilmePorId(int id);
         List<ReadFilmeComDiretorDto> RetornaListaDeFilmes();
-        List<ReadFilmeComDiretorDto> RetornaListaDeFilmesPorNome(string name);
+        List<ReadFilmeComDiretorDto> RetornaListaDeFilmesDeUmDiretor(string name);
     }
 }

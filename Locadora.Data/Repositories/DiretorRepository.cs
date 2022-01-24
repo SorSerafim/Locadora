@@ -12,7 +12,11 @@ namespace Locadora.Data.Repositories
 
         public override List<Diretor> RetornaLista()
         {
-            return _context.Diretores.Include(x => x.Filmes).ThenInclude(y => y.Genero).ToList();
+            return _context.Diretores
+                .Include(x => x.Filmes)
+                .ThenInclude(y => y.Genero)
+                .OrderBy(x => x.Nome)
+                .ToList();
         }
     }
 }

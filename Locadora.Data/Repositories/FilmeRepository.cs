@@ -27,7 +27,7 @@ namespace Locadora.Data.Repositories
                 .ToList();
         }
 
-        public List<Filme> RetornaListaPorNome(string name)
+        public List<Filme> RetornaListaDeFilmesPorNomeDoDiretor(string name)
         {
             return _context.Filmes
                 .Include(x => x.Diretor)

@@ -17,14 +17,14 @@ namespace Locadora.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("Adicionar")]
         public IActionResult Adicionar(CreateFilmeDto createDto)
         {
             _service.AdicionaFilme(createDto);
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("ListaDeFilmes")]
         public IActionResult RetornaLista()
         {
             List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmes();
@@ -35,7 +35,7 @@ namespace Locadora.Controllers
         [HttpGet("nome/{nome}")]
         public IActionResult RetornaPorNome(string nome)
         {
-            List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmesPorNome(nome);
+            List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmesDeUmDiretor(nome);
             if (listDto != null) return Ok(listDto);
             return NoContent();
         }
