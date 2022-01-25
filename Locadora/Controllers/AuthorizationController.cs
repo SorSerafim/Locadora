@@ -22,6 +22,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPost("Cadastro")]
+        [AllowAnonymous]
         public IActionResult Adicionar(CreateUserDto createDto)
         {
             createDto.Password = CommonMethods.ConvertToEncrypt(createDto.Password);
@@ -37,6 +38,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaPorId(int id)
         {
             ReadUserDto readDto = _service.RetornaUserPorId(id);
@@ -45,6 +47,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("ListaDeUsusários")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaLista()
         {
             List<ReadUserDto> listDto = _service.RetornaListaDeUsers();

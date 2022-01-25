@@ -2,6 +2,7 @@
 using Locadora.Domain.Interfaces.ServiceInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Controllers
@@ -18,6 +19,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPost("Adicionar")]
+        [Authorize(Roles = "Manager")]
         public IActionResult Adicionar(CreateGeneroDto createDto)
         {
             _service.AdicionaGenero(createDto);
@@ -25,6 +27,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("ListaDeGêneros")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaLista()
         {
             List<ReadGeneroDto> listDto = _service.RetornaListaDeGeneros();
@@ -33,6 +36,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaPorId(int id)
         {
             ReadGeneroDto readDto = _service.RetornaGeneroPorId(id);
@@ -41,6 +45,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult AtualizaPorId(int id, CreateGeneroDto createDto)
         {
             Result result = _service.AtualizaGenero(id, createDto);
@@ -49,6 +54,7 @@ namespace Locadora.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeletaPorId(int id)
         {
             Result result = _service.DeletaGenero(id);

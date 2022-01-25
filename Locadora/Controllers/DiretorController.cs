@@ -2,6 +2,7 @@
 using Locadora.Domain.Interfaces.ServiceInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Controllers
@@ -18,6 +19,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPost("Adicionar")]
+        [Authorize(Roles = "Manager")]
         public IActionResult Adicionar(CreateDiretoresDto createDto)
         {
             _service.AdicionaDiretor(createDto);
@@ -25,6 +27,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("ListaDeDiretores")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaLista()
         {
             List<ReadDiretorDto> listDto = _service.RetornaListaDeDiretores();
@@ -33,6 +36,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaPorId(int id)
         {
             ReadDiretorDto readDto = _service.RetornaDiretorPorId(id);
@@ -41,6 +45,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult AtualizaPorId(int id, CreateDiretoresDto createDto)
         {
             Result result = _service.AtualizaDiretor(id, createDto);
@@ -49,6 +54,7 @@ namespace Locadora.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeletaPorId(int id)
         {
             Result result = _service.DeletaDiretor(id);

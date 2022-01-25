@@ -2,6 +2,7 @@
 using Locadora.Domain.Interfaces.ServiceInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Controllers
@@ -18,6 +19,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPost("Adicionar")]
+        [Authorize(Roles = "Manager")]
         public IActionResult Adicionar(CreateFilmeDto createDto)
         {
             _service.AdicionaFilme(createDto);
@@ -25,6 +27,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("ListaDeFilmes")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaLista()
         {
             List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmes();
@@ -33,6 +36,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("nome/{nome}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaPorNome(string nome)
         {
             List<ReadFilmeComDiretorDto> listDto = _service.RetornaListaDeFilmesDeUmDiretor(nome);
@@ -41,6 +45,7 @@ namespace Locadora.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult RetornaPorId(int id)
         {
             ReadFilmeComDiretorDto readDto = _service.RetornaFilmePorId(id);
@@ -49,6 +54,7 @@ namespace Locadora.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult AtualizaPorId(int id, CreateFilmeDto createDto)
         {
             Result result = _service.AtualizaFilme(id, createDto);
@@ -57,6 +63,7 @@ namespace Locadora.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeletaPorId(int id)
         {
             Result result = _service.DeletaFilme(id);

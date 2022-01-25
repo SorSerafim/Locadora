@@ -1,4 +1,4 @@
-﻿using Locadora.Domain.Models;
+﻿using Locadora.Shared.ReadDto;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,7 +15,7 @@ namespace Locadora.Service
             _configuration = configuration;
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(ReadUserDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
