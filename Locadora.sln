@@ -15,6 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora.Shared", "Locadora
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0 - Presentation", "1.0 - Presentation", "{A0F7FE35-06A0-4C92-9DD6-497A16DA5ACC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.0 - Application", "2.0 - Application", "{80ACC13A-CB71-4ED0-B809-EA35F0DC9F47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.0 - Domain", "3.0 - Domain", "{7D624A27-5118-4071-9900-EE387AF92E2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.0 - Data", "4.0 - Data", "{89EAF3AB-3B4E-4667-911E-D5A6F3E792BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.0 - Crosscuting", "5.0 - Crosscuting", "{0F3FA997-C537-47D5-9CCD-C6848F3F4DD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Test", "99 - Test", "{3209EDBC-74FE-4628-8D02-D0C46AE13125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +54,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A86B9DD-F624-4B17-81E9-758C8CD1C228} = {A0F7FE35-06A0-4C92-9DD6-497A16DA5ACC}
+		{8AC6EE4C-BC2E-4400-9F48-934C4748EA56} = {80ACC13A-CB71-4ED0-B809-EA35F0DC9F47}
+		{C3BB6918-5B40-407D-8FA7-145ED327FBA4} = {7D624A27-5118-4071-9900-EE387AF92E2E}
+		{86B5D4E7-5205-4225-A168-1B29B9CA4071} = {89EAF3AB-3B4E-4667-911E-D5A6F3E792BD}
+		{66583F59-DE5E-4B09-A4EC-70C0ABFA3EAC} = {0F3FA997-C537-47D5-9CCD-C6848F3F4DD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F40D8F47-D453-475A-B744-AE8C7F61455B}
