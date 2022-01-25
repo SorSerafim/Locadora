@@ -11,7 +11,7 @@ namespace Locadora.Domain.Interfaces.ServiceInterfaces
         Result AtualizaUser(int id, CreateUserDto createDto);
         Result DeletaUser(int id);
         ReadUserDto RetornaUserPorId(int id);
-        User RetornaUserPorUsernameESenha(string username, string password);
+        ReadUserDto RetornaUserPorUsernameESenha(string username, string password);
         List<ReadUserDto> RetornaListaDeUsers();
     }
 }

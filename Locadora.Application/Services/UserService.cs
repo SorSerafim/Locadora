@@ -55,10 +55,13 @@ namespace Locadora.Application.Services
             return null;
         }
 
-        public User RetornaUserPorUsernameESenha(string username, string password)
+        public ReadUserDto RetornaUserPorUsernameESenha(string username, string password)
         {
-            User user = _repository.RetornaLista().FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password.ToLower() == password.ToLower());
-            if (user != null) return user;
+            User user = _repository.RetornaLista()
+                .FirstOrDefault(x => x
+                .Username.ToLower() == username.ToLower() && x
+                .Password.ToLower() == password.ToLower());
+            if (user != null) return _mapper.Map<ReadUserDto>(user);
             return null;
         }
 
