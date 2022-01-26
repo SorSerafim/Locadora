@@ -5,11 +5,7 @@ using Locadora.Domain.Interfaces.RepositoryInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.Tests
@@ -64,6 +60,8 @@ namespace Application.Tests
             genero.Id = 1;
             genero.Filmes = null;
 
+            _mapper.Setup(x => x.Map<Genero>(createDto)).Returns(genero);
+
             _repository.Setup(x => x.Retorna(1)).Returns(genero);
 
             //Act
@@ -86,6 +84,11 @@ namespace Application.Tests
             createDto.Nome = "atualiza";
 
             Genero genero = new Genero();
+            genero.Nome = "";
+            genero.Id = 1;
+            genero.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Genero>(createDto)).Returns(genero);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Genero);
 
@@ -103,10 +106,15 @@ namespace Application.Tests
         {
             //Arrange
 
+            CreateGeneroDto createDto = new CreateGeneroDto();
+            createDto.Nome = "deleta";
+
             Genero genero = new Genero();
-            genero.Nome = "deleta";
+            genero.Nome = "";
             genero.Id = 1;
             genero.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Genero>(createDto)).Returns(genero);
 
             _repository.Setup(x => x.Retorna(1)).Returns(genero);
 
@@ -126,7 +134,15 @@ namespace Application.Tests
         {
             //Arrange
 
+            CreateGeneroDto createDto = new CreateGeneroDto();
+            createDto.Nome = "deleta";
+
             Genero genero = new Genero();
+            genero.Nome = "";
+            genero.Id = 1;
+            genero.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Genero>(createDto)).Returns(genero);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Genero);
 
@@ -150,7 +166,7 @@ namespace Application.Tests
             genero.Filmes = null;
 
             ReadGeneroDto readDto = new ReadGeneroDto();
-            readDto.Nome = "retornaPorId";
+            readDto.Nome = "";
             readDto.Id = 1;
 
             _mapper.Setup(x => x.Map<ReadGeneroDto>(genero)).Returns(readDto);
@@ -174,6 +190,15 @@ namespace Application.Tests
             //Arrange
 
             Genero genero = new Genero();
+            genero.Nome = "retornaPorId";
+            genero.Id = 1;
+            genero.Filmes = null;
+
+            ReadGeneroDto readDto = new ReadGeneroDto();
+            readDto.Nome = "";
+            readDto.Id = 1;
+
+            _mapper.Setup(x => x.Map<ReadGeneroDto>(genero)).Returns(readDto);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Genero);
 
@@ -197,7 +222,7 @@ namespace Application.Tests
             genero.Filmes = null;
 
             ReadGeneroDto readDto = new ReadGeneroDto();
-            readDto.Nome = "retornalista";
+            readDto.Nome = "";
             readDto.Id = 1;
 
             List<Genero> list = new List<Genero>();

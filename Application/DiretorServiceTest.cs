@@ -60,6 +60,8 @@ namespace Application.Tests
             diretor.Id = 1;
             diretor.Filmes = null;
 
+            _mapper.Setup(x => x.Map<Diretor>(createDto)).Returns(diretor);
+
             _repository.Setup(x => x.Retorna(1)).Returns(diretor);
 
             //Act
@@ -82,6 +84,11 @@ namespace Application.Tests
             createDto.Nome = "atualiza";
 
             Diretor diretor = new Diretor();
+            diretor.Nome = "";
+            diretor.Id = 1;
+            diretor.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Diretor>(createDto)).Returns(diretor);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Diretor);
 
@@ -99,10 +106,15 @@ namespace Application.Tests
         {
             //Arrange
 
+            CreateDiretoresDto createDto = new CreateDiretoresDto();
+            createDto.Nome = "atualiza";
+
             Diretor diretor = new Diretor();
-            diretor.Nome = "deleta";
+            diretor.Nome = "";
             diretor.Id = 1;
             diretor.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Diretor>(createDto)).Returns(diretor);
 
             _repository.Setup(x => x.Retorna(1)).Returns(diretor);
 
@@ -122,7 +134,15 @@ namespace Application.Tests
         {
             //Arrange
 
+            CreateDiretoresDto createDto = new CreateDiretoresDto();
+            createDto.Nome = "atualiza";
+
             Diretor diretor = new Diretor();
+            diretor.Nome = "";
+            diretor.Id = 1;
+            diretor.Filmes = null;
+
+            _mapper.Setup(x => x.Map<Diretor>(createDto)).Returns(diretor);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Diretor);
 
@@ -146,8 +166,8 @@ namespace Application.Tests
             diretor.Filmes = null;
 
             ReadDiretorDto readDto = new ReadDiretorDto();
-            readDto.Nome = "retornaPorId";
-            readDto.Id = 1;
+            readDto.Nome = "";
+            readDto.Id = 0;
             readDto.Filmes = null;
 
             _mapper.Setup(x => x.Map<ReadDiretorDto>(diretor)).Returns(readDto);
@@ -171,6 +191,16 @@ namespace Application.Tests
             //Arrange
 
             Diretor diretor = new Diretor();
+            diretor.Nome = "retornaPorId";
+            diretor.Id = 1;
+            diretor.Filmes = null;
+
+            ReadDiretorDto readDto = new ReadDiretorDto();
+            readDto.Nome = "";
+            readDto.Id = 0;
+            readDto.Filmes = null;
+
+            _mapper.Setup(x => x.Map<ReadDiretorDto>(diretor)).Returns(readDto);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Diretor);
 
@@ -194,8 +224,8 @@ namespace Application.Tests
             diretor.Filmes = null;
 
             ReadDiretorDto readDto = new ReadDiretorDto();
-            readDto.Nome = "retornalista";
-            readDto.Id = 1;
+            readDto.Nome = "";
+            readDto.Id = 0;
             readDto.Filmes = null;
 
             List<Diretor> list = new List<Diretor>();

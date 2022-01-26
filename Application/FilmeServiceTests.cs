@@ -5,11 +5,7 @@ using Locadora.Domain.Interfaces.RepositoryInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.Tests
@@ -74,7 +70,7 @@ namespace Application.Tests
             //Arrange
 
             CreateFilmeDto createDto = new CreateFilmeDto();
-            createDto.Nome = "adiciona";
+            createDto.Nome = "atualiza";
             createDto.Ano = 1999;
             createDto.Duracao = 60;
             createDto.DiretorId = 1;
@@ -98,7 +94,10 @@ namespace Application.Tests
             filme.Genero = genero;
             filme.GeneroId = 0;
 
+            _mapper.Setup(x => x.Map<Filme>(createDto)).Returns(filme);
+
             _repository.Setup(x => x.Retorna(1)).Returns(filme);
+
 
             //Act
 
@@ -117,29 +116,11 @@ namespace Application.Tests
             //Arrange
 
             CreateFilmeDto createDto = new CreateFilmeDto();
-            createDto.Nome = "adiciona";
+            createDto.Nome = "atualiza";
             createDto.Ano = 1999;
             createDto.Duracao = 60;
             createDto.DiretorId = 1;
             createDto.GeneroId = 1;
-
-            Filme genero = new Filme();
-
-            _repository.Setup(x => x.Retorna(1)).Returns(null as Filme);
-
-            //Act
-
-            var resultado = _sut.AtualizaFilme(1, createDto);
-
-            //Assert
-
-            Assert.True(resultado.IsFailed);
-        }
-
-        [Fact]
-        public void DeletaFilme_DeveDeletarUmFilmeNoBancoDeDados()
-        {
-            //Arrange
 
             Diretor diretor = new Diretor();
             diretor.Id = 1;
@@ -158,6 +139,51 @@ namespace Application.Tests
             filme.DiretorId = 0;
             filme.Genero = genero;
             filme.GeneroId = 0;
+
+            _mapper.Setup(x => x.Map<Filme>(createDto)).Returns(filme);
+
+            _repository.Setup(x => x.Retorna(1)).Returns(null as Filme);
+
+            //Act
+
+            var resultado = _sut.AtualizaFilme(1, createDto);
+
+            //Assert
+
+            Assert.True(resultado.IsFailed);
+        }
+
+        [Fact]
+        public void DeletaFilme_DeveDeletarUmFilmeNoBancoDeDados()
+        {
+            //Arrange
+
+            CreateFilmeDto createDto = new CreateFilmeDto();
+            createDto.Nome = "deleta";
+            createDto.Ano = 1999;
+            createDto.Duracao = 60;
+            createDto.DiretorId = 1;
+            createDto.GeneroId = 1;
+
+            Diretor diretor = new Diretor();
+            diretor.Id = 1;
+            diretor.Nome = "Diretor";
+
+            Genero genero = new Genero();
+            genero.Id = 1;
+            genero.Nome = "Genero";
+
+            Filme filme = new Filme();
+            filme.Id = 1;
+            filme.Nome = "";
+            filme.Ano = 0;
+            filme.Duracao = 0;
+            filme.Diretor = diretor;
+            filme.DiretorId = 0;
+            filme.Genero = genero;
+            filme.GeneroId = 0;
+
+            _mapper.Setup(x => x.Map<Filme>(createDto)).Returns(filme);
 
             _repository.Setup(x => x.Retorna(1)).Returns(filme);
 
@@ -177,7 +203,32 @@ namespace Application.Tests
         {
             //Arrange
 
+            CreateFilmeDto createDto = new CreateFilmeDto();
+            createDto.Nome = "deleta";
+            createDto.Ano = 1999;
+            createDto.Duracao = 60;
+            createDto.DiretorId = 1;
+            createDto.GeneroId = 1;
+
+            Diretor diretor = new Diretor();
+            diretor.Id = 1;
+            diretor.Nome = "Diretor";
+
+            Genero genero = new Genero();
+            genero.Id = 1;
+            genero.Nome = "Genero";
+
             Filme filme = new Filme();
+            filme.Id = 1;
+            filme.Nome = "";
+            filme.Ano = 0;
+            filme.Duracao = 0;
+            filme.Diretor = diretor;
+            filme.DiretorId = 0;
+            filme.Genero = genero;
+            filme.GeneroId = 0;
+
+            _mapper.Setup(x => x.Map<Filme>(createDto)).Returns(filme);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Filme);
 
@@ -205,7 +256,7 @@ namespace Application.Tests
 
             Filme filme = new Filme();
             filme.Id = 1;
-            filme.Nome = "";
+            filme.Nome = "retornaPorId";
             filme.Ano = 0;
             filme.Duracao = 0;
             filme.Diretor = diretor;
@@ -240,7 +291,32 @@ namespace Application.Tests
         {
             //Arrange
 
+            Diretor diretor = new Diretor();
+            diretor.Id = 1;
+            diretor.Nome = "Diretor";
+
+            Genero genero = new Genero();
+            genero.Id = 1;
+            genero.Nome = "Genero";
+
             Filme filme = new Filme();
+            filme.Id = 1;
+            filme.Nome = "retornaPorId";
+            filme.Ano = 0;
+            filme.Duracao = 0;
+            filme.Diretor = diretor;
+            filme.DiretorId = 0;
+            filme.Genero = genero;
+            filme.GeneroId = 0;
+
+            ReadFilmeComDiretorDto readDto = new ReadFilmeComDiretorDto();
+            readDto.Nome = "";
+            readDto.Ano = 0;
+            readDto.Duracao = 0;
+            readDto.Diretor = "Diretor";
+            readDto.Genero = "Genero";
+
+            _mapper.Setup(x => x.Map<ReadFilmeComDiretorDto>(filme)).Returns(readDto);
 
             _repository.Setup(x => x.Retorna(1)).Returns(null as Filme);
 
@@ -268,7 +344,7 @@ namespace Application.Tests
 
             Filme filme = new Filme();
             filme.Id = 1;
-            filme.Nome = "";
+            filme.Nome = "retornaLista";
             filme.Ano = 0;
             filme.Duracao = 0;
             filme.Diretor = diretor;
@@ -302,6 +378,57 @@ namespace Application.Tests
             Assert.IsType<List<ReadFilmeComDiretorDto>>(resultado);
 
             _repository.Verify(x => x.RetornaLista(), Times.Once());
+        }
+
+        [Fact]
+        public void RetornaListaDeFilmesDeUmDiretor_DeveRetornarUmaListaDeFilmePeloNomeDoDiretor()
+        {
+            //Arrange
+
+            Diretor diretor = new Diretor();
+            diretor.Id = 1;
+            diretor.Nome = "Diretor";
+
+            Genero genero = new Genero();
+            genero.Id = 1;
+            genero.Nome = "Genero";
+
+            Filme filme = new Filme();
+            filme.Id = 1;
+            filme.Nome = "retornaLista";
+            filme.Ano = 0;
+            filme.Duracao = 0;
+            filme.Diretor = diretor;
+            filme.DiretorId = 0;
+            filme.Genero = genero;
+            filme.GeneroId = 0;
+
+            ReadFilmeComDiretorDto readDto = new ReadFilmeComDiretorDto();
+            readDto.Nome = "";
+            readDto.Ano = 0;
+            readDto.Duracao = 0;
+            readDto.Diretor = "Diretor";
+            readDto.Genero = "Genero";
+
+            List<Filme> list = new List<Filme>();
+            list.Add(filme);
+
+            List<ReadFilmeComDiretorDto> listDto = new List<ReadFilmeComDiretorDto>();
+            listDto.Add(readDto);
+
+            _mapper.Setup(x => x.Map<List<ReadFilmeComDiretorDto>>(list)).Returns(listDto);
+
+            _repository.Setup(x => x.RetornaListaDeFilmesPorNomeDoDiretor(diretor.Nome)).Returns(list);
+
+            //Act
+
+            var resultado = _sut.RetornaListaDeFilmesDeUmDiretor(diretor.Nome);
+
+            //Assert
+
+            Assert.IsType<List<ReadFilmeComDiretorDto>>(resultado);
+
+            _repository.Verify(x => x.RetornaListaDeFilmesPorNomeDoDiretor(diretor.Nome), Times.Once());
         }
     }
 }
