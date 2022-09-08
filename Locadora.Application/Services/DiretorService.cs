@@ -5,6 +5,7 @@ using Locadora.Domain.Interfaces.RepositoryInterfaces;
 using Locadora.Domain.Interfaces.ServiceInterfaces;
 using Locadora.Shared;
 using Locadora.Shared.ReadDto;
+using MediatR;
 
 namespace Locadora.Application.Services
 {
